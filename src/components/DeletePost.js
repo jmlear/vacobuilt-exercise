@@ -1,17 +1,18 @@
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
-export default function DeletePost({ id }) {
+export default function DeletePost() {
     return (
         <QueryClientProvider client={queryClient}>
-            <RunDelete id={id}/>
+            <RunDelete/>
         </QueryClientProvider>
     )
 }
 
-function RunDelete({ id }) {
+function RunDelete() {
+    const {id} = useParams();
     const navigate = useNavigate();
 
     const url = `https://us-central1-mbtcandidate.cloudfunctions.net/posts/jlear/${id}`;

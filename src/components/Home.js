@@ -35,8 +35,8 @@ function GetPosts() {
     return (
       <div style={{'marginTop': '100px'}}>
         <Button onClick={() => navigate('createPost')} variant="contained" color="primary">New Post</Button>
-        {data.response.map(element => {
-            return <BlogPost post={element}/>
+        {data.response.map((element, index) => {
+            return <BlogPost key={index} post={element}/>
         })}
       </div>
     )

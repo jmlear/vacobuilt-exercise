@@ -13,12 +13,18 @@ export default function CreatePostAPI({ title, text }) {
 
 function RunQuery({ title, text }) {
     const navigate = useNavigate();
+    const postData = {
+        'title': title,
+        'text': text,
+        'timestamp':123
+    };
 
-    const url = `https://us-central1-mbtcandidate.cloudfunctions.net/posts/jlear?title=${title}&text=${text}`;
+    const url = `https://us-central1-mbtcandidate.cloudfunctions.net/posts/jlear`;
     const { isLoading, error, data } = useQuery('createPost', () => 
         fetch(url,{
             method: 'POST',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
+            body: JSON.stringify(postData)
         }).then(res => res.json())
     );
 

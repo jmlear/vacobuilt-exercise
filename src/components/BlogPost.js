@@ -18,7 +18,7 @@ export default function BlogPost({ post }) {
         <CardContent>
             <CardHeader title={post.timestamp} action={<IconButton aria-label="delete" onClick={handleDelete}><DeleteIcon/></IconButton>}/>
             <h2>{post.title}</h2>
-            <p>{Parser(post.text)}</p>
+            {Parser(post.text)}
         </CardContent>
     </Card>
   )
