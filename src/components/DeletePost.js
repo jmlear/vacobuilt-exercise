@@ -3,22 +3,22 @@ import { useNavigate } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
-export default function CreatePostAPI({ title, text }) {
+export default function DeletePost({ id }) {
     return (
         <QueryClientProvider client={queryClient}>
-            <RunQuery title={title} text={text}/>
+            <RunDelete id={id}/>
         </QueryClientProvider>
     )
 }
 
-function RunQuery({ title, text }) {
+function RunDelete({ id }) {
     const navigate = useNavigate();
 
-    const url = `https://us-central1-mbtcandidate.cloudfunctions.net/posts/jlear?title=${title}&text=${text}`;
-    const { isLoading, error, data } = useQuery('createPost', () => 
+    const url = `https://us-central1-mbtcandidate.cloudfunctions.net/posts/jlear/${id}`;
+    const { isLoading, error, data } = useQuery('deletePost', () => 
         fetch(url,{
-            method: 'POST',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            method: 'DELETE',
+            //'Content-Type': 'application/x-www-form-urlencoded',
         }).then(res => res.json())
     );
 
